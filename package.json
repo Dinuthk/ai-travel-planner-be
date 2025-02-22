@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -L index.js",
-    "star":"docker run --name travel-be-container -p 3001:3001 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner/server:/app travel-be:v1"
+    "star":"docker run --name travel-be-container -p 3001:3001 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner-be:/app travel-be:v1"
   },
   "type": "module",
   "keywords": [],
