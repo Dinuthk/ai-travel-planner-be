@@ -5,27 +5,26 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'main', url: 'https://github.com/Dinuthk'
+                    git branch: 'devlopment', url: 'https://github.com/Dinuthk/ai-travel-planner-be/tree/main/server'
                 }
             }
         }
         stage('Build Docker Image') {
             steps {  
-                bat 'docker build -t adomicarts/nodeapp-cuban:%BUILD_NUMBER% .'
+                bat 'docker build -t dinuth324/ai-travel-be:%BUILD_NUMBER% .'
             }
         }
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'samin-docker', variable: 'samindocker')]) {
-                    script {
-                        bat "docker login -u adomicarts -p %samindocker%"
-                    }
+                
+                        bat "docker login -u dinuth324 -p %Abm4699#TT%"
+                    
                 }
             }
         }
         stage('Push Image') {
             steps {
-                bat 'docker push adomicarts/nodeapp-cuban:%BUILD_NUMBER%'
+                bat 'docker push dinuth324/ai-travel-be:%BUILD_NUMBER%'
             }
         }
     }
@@ -34,4 +33,3 @@ pipeline {
             bat 'docker logout'
         }
     }
-}
