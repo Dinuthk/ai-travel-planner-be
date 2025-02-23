@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -L index.js",
-    "star":"docker run --name travel-be-container -p 3001:3001 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner-be:/app travel-be:v1"
+    "star": "docker run --name travel-be-container -p 3001:3001 --rm -v /app/node_modules -v D:/Github_work_place/ai-travel-planner-be:/app travel-be:v1"
   },
   "type": "module",
   "keywords": [],
@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "nodemon": "^3.1.9"
   }
