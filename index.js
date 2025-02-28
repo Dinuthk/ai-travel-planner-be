@@ -5,6 +5,8 @@ import EmployeeModel from "./models/Employee.js";
 import connectDB from "./config/db.js";
 import dotenv from 'dotenv';
 import { generateToken, verifyToken } from "./utils/jwt.js";
+import authRouter from "./routes/authRoutes.js";
+
 const port = 3001;
 
 dotenv.config(); 
@@ -18,6 +20,9 @@ connectDB();
 app.get("/", (req, res) => {
     res.send('API is running');
 })
+
+//using routes
+app.use('/api/v1/users',authRouter);
 
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
@@ -56,14 +61,14 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.post("/register", async (req, res) => {
-    try {
-        const employee = await EmployeeModel.create(req.body);
-        res.json(employee);
-    } catch (err) {
-        res.status(500).json({ error: "Failed to register user" });
-    }
-});
+// app.post("/register", async (req, res) => {
+//     try {
+//         const employee = await EmployeeModel.create(req.body);
+//         res.json(employee);
+//     } catch (err) {
+//         res.status(500).json({ error: "Failed to register user" });
+//     }
+// });
 app.post("/validate", async (req, res) => {
     try {
         const { token } = req.body;
