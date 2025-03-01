@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 //using routes
 app.use('/api/v1/users',authRouter);
 
+
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
