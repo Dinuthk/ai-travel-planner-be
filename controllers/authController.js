@@ -51,9 +51,6 @@ export const login = asyncErrorHandler(async (req, res, next) => {
     res.status(200).json({
         msg: "Login successful",
         error: false,
-        token,
-        data: {
-            user,
-        },
+        token
     });
 });

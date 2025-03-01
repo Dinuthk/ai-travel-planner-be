@@ -25,42 +25,42 @@ app.get("/", (req, res) => {
 app.use('/api/v1/users',authRouter);
 
 
-app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const user = await EmployeeModel.findOne({ email });
-        if (user) {
-            if (password === user.password) {
-                //gen token 
-                const payload ={
-                    username: user.name,
-                }
-                const token = generateToken(payload);
-                console.log(token);
+// app.post("/login", async (req, res) => {
+//     const { email, password } = req.body;
+//     try {
+//         const user = await EmployeeModel.findOne({ email });
+//         if (user) {
+//             if (password === user.password) {
+//                 //gen token 
+//                 const payload ={
+//                     username: user.name,
+//                 }
+//                 const token = generateToken(payload);
+//                 console.log(token);
 
-                res.status(200).json({
-                    msg: "Login successful",
-                    error: false,
-                    data:{
-                        token,
-                    }
-                });
-            } else {
-                res.status(400).json({
-                    msg: "Invalid credentials",
-                    error: true
-                });
-            }
-        } else {
-            res.status(400).json({
-                msg: "User not registered",
-                error: true
-            });
-        }
-    } catch (err) {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
+//                 res.status(200).json({
+//                     msg: "Login successful",
+//                     error: false,
+//                     data:{
+//                         token,
+//                     }
+//                 });
+//             } else {
+//                 res.status(400).json({
+//                     msg: "Invalid credentials",
+//                     error: true
+//                 });
+//             }
+//         } else {
+//             res.status(400).json({
+//                 msg: "User not registered",
+//                 error: true
+//             });
+//         }
+//     } catch (err) {
+//         res.status(500).json({ error: "Internal Server Error" });
+//     }
+// });
 
 // app.post("/register", async (req, res) => {
 //     try {
@@ -70,6 +70,10 @@ app.post("/login", async (req, res) => {
 //         res.status(500).json({ error: "Failed to register user" });
 //     }
 // });
+
+
+
+
 app.post("/validate", async (req, res) => {
     try {
         const { token } = req.body;
