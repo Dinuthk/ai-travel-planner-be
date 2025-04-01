@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy to App Server') {
     steps {
         script {
-            sshagent(['app-ssh-cred']) { // Add SSH credentials in Jenkins
+            sshagent(['dockerhub-cred']) { // Add SSH credentials in Jenkins
                 bat "ansible-playbook -i inventory deploy.yml --extra-vars \"build_number=%BUILD_NUMBER%\""
             }
         }
