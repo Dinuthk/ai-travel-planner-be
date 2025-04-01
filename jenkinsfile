@@ -27,6 +27,15 @@ pipeline {
                 bat 'docker push dinuth324/ai-travel-be:%BUILD_NUMBER%'
             }
         }
+        stage('Deploy to App Server') {
+    steps {
+        script {
+            sshagent(['app-ssh-cred']) { // Add SSH credentials in Jenkins
+                bat "ansible-playbook -i inventory deploy.yml --extra-vars \"build_number=%BUILD_NUMBER%\""
+            }
+        }
+    }
+}
     }
     post {
         always {
